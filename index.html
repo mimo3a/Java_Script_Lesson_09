@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" initial-scale=1.0">
+    <title>Lesson 09</title>
+</head>
+<body>
+    <form id="formOne">
+        <label>Last Name</label><input type="text" id="userLastName">
+        <p></p>
+        <label>First Name</label><input type="text" id="userFirstName">
+        <p></p>
+        <label>Age</label><input type="text" id="userAge" size="30" >
+        <p></p>
+        <label>Place of residence</label><input type="text" id="userResidence">
+        <p></p>
+        <input type="button" onclick = sendData() value="send">
+    </form>
+    <script>
+        
+
+        function sendData () {
+            let lastNameUser = document.getElementById("userLastName").value
+            let firstNameUser = document.getElementById("userFirstName").value
+            let ageUser = document.getElementById("userAge").value;
+            let residenceUser = document.getElementById("userResidence").value;
+
+            if(ageUser < 1 || ageUser > 100) {
+                document.getElementById("userAge").value = "Set the correct age 1-100 please";
+                return;
+            } else{
+            let userData = {
+                lName:lastNameUser,
+                fName:firstNameUser,
+                age:ageUser,
+                adresse:residenceUser
+            }
+            console.log(userData);
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST","/formPost");
+            xhr.setRequestHeader("Content-type", "/json");
+            xhr.send(userData);
+
+            
+            let xhrget = new XMLHttpRequest();
+            xhrget.open("GET", "/formGet?lname=" + userData.lName + "&fname=" + userData.fName + "&age=" + userData.age + "&adresse=" + userData.adresse);
+            xhrget.setRequestHeader("Content-type", "/json");
+            xhrget.send(userData);
+            
+        }}
+    </script>
+    
+</body>
+</html>
