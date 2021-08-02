@@ -37,17 +37,16 @@
                 age:ageUser,
                 adresse:residenceUser
             }
-            console.log(JSON.stringify(userData));
+            console.log(userData);
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', "/formGet", true);
-            xhr.send(JSON.stringify(userData));
-
+            var xhr = new XMLHttpRequest();           
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     alert(xhr.responseText);
                  }
             }
+            xhr.open('GET', "/formGet", true);
+            xhr.send(userData);
            
 
             // let xhr = new XMLHttpRequest();

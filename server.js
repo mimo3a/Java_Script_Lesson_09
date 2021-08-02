@@ -11,19 +11,23 @@ server.get("/", function (req, resp) {
     console.log("Start page requested.");
 });
 
-server.get("/formGet", function (req, resp) {
+server.get("/formGet", function (req, res) {
     console.log("Form receipted by GET.");
+   // console.log(JSON.parse(req.query));
     var obj = req.query;
+    console.log("my objeckt =" + obj);
     console.log(obj.lName += ".ValidatedByGET");
     console.log(obj.fName += ".ValidatedByGET");
     console.log(obj.age += ".ValidatedByGET");
     console.log(obj.address += ".ValidatedByGET");
-	resp.send(obj);
+	
+    res.status(200).send(obj);
+    
 });
 
 server.post("/formPost", function (req, resp) {
     console.log("Form receipted by POST.");
-    // console.log(JSON.parse(req.query));
+    console.log(JSON.parse(req.query));
     var obj = req.body;
     console.log(obj.lName += ".ValidatedByPOST");
     console.log(obj.fName += ".ValidatedByPOST");
@@ -32,4 +36,9 @@ server.post("/formPost", function (req, resp) {
     resp.send(obj);
 });
 
-server.listen(3000); //the server object listens on port 8080
+ server.listen(3000, ()=>{
+     console.log("server is listen on port 3000");
+ });
+   
+
+ //the server object listens on port 8080
