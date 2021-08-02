@@ -37,18 +37,31 @@
                 age:ageUser,
                 adresse:residenceUser
             }
-            console.log(userData);
+            console.log(JSON.stringify(userData));
 
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST","/formPost");
-            xhr.setRequestHeader("Content-type", "/json");
-            xhr.send(userData);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "/formGet", true);
+            xhr.send(JSON.stringify(userData));
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    alert(xhr.responseText);
+                 }
+            }
+           
+
+            // let xhr = new XMLHttpRequest();
+            // xhr.open("POST","/formPost");
+            // xhr.setRequestHeader("Content-type", "/json");
+            // xhr.send(userData);
+            // alert(xhr.status);
 
             
-            let xhrget = new XMLHttpRequest();
-            xhrget.open("GET", "/formGet?lname=" + userData.lName + "&fname=" + userData.fName + "&age=" + userData.age + "&adresse=" + userData.adresse);
-            xhrget.setRequestHeader("Content-type", "/json");
-            xhrget.send(userData);
+            // let xhrget = new XMLHttpRequest();
+            // xhrget.open("GET", "/formGet?lname=" + userData.lName + "&fname=" + userData.fName + "&age=" + userData.age + "&adresse=" + userData.adresse);
+            // xhrget.setRequestHeader("Content-type", "/json");
+            // xhrget.send(userData);
+            // alert(xhrget.status);
             
         }}
     </script>
