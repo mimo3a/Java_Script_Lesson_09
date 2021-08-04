@@ -7,33 +7,38 @@ server.use(jsonParser);
 
 server.use(express.static(__dirname));
 
-server.get("/", function (req, resp) {
+server.get("/", function (req, res) {
+    
     console.log("Start page requested.");
+    res.send("hallo");
 });
 
 server.get("/formGet", function (req, res) {
     console.log("Form receipted by GET.");
    // console.log(JSON.parse(req.query));
     var obj = req.query;
-    console.log("my objeckt =" + obj);
+    
+    // console.log("my objeckt =" + obj.query);
     console.log(obj.lName += ".ValidatedByGET");
     console.log(obj.fName += ".ValidatedByGET");
-    console.log(obj.age += ".ValidatedByGET");
+    console.log(obj.age +=".ValidatedByGET");
     console.log(obj.address += ".ValidatedByGET");
 	
     res.status(200).send(obj);
     
 });
 
-server.post("/formPost", function (req, resp) {
+server.post("/formPost", function (req, res) {
     console.log("Form receipted by POST.");
-    console.log(JSON.parse(req.query));
+    // console.log(JSON.parse(req.query));
+    
     var obj = req.body;
+    console.log(obj);
     console.log(obj.lName += ".ValidatedByPOST");
     console.log(obj.fName += ".ValidatedByPOST");
     console.log(obj.age += ".ValidatedByPOST");
     console.log(obj.address += ".ValidatedByPOST");
-    resp.send(obj);
+    res.send(obj);
 });
 
  server.listen(3000, ()=>{

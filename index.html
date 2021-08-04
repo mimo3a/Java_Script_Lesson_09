@@ -35,33 +35,37 @@
                 lName:lastNameUser,
                 fName:firstNameUser,
                 age:ageUser,
-                adresse:residenceUser
+                address:residenceUser
             }
             console.log(userData);
-
+// ----------------------GET-----------------------------------------------------------------
             var xhr = new XMLHttpRequest();           
             xhr.onreadystatechange = function() {
+                
                 if (xhr.readyState == XMLHttpRequest.DONE) {
                     alert(xhr.responseText);
                  }
             }
-            xhr.open('GET', "/formGet", true);
-            xhr.send(userData);
            
+            xhr.open("GET", "/formGet?lName=" + userData.lName + "&fName=" + userData.fName + "&age=" + userData.age + "&address=" + userData.address);
+            xhr.send();
+           
+// ---------------------------POST----------------------------------------------------------------------
 
-            // let xhr = new XMLHttpRequest();
-            // xhr.open("POST","/formPost");
-            // xhr.setRequestHeader("Content-type", "/json");
-            // xhr.send(userData);
-            // alert(xhr.status);
+setTimeout(function(){
 
-            
-            // let xhrget = new XMLHttpRequest();
-            // xhrget.open("GET", "/formGet?lname=" + userData.lName + "&fname=" + userData.fName + "&age=" + userData.age + "&adresse=" + userData.adresse);
-            // xhrget.setRequestHeader("Content-type", "/json");
-            // xhrget.send(userData);
-            // alert(xhrget.status);
-            
+             let xhr = new XMLHttpRequest();            
+             xhr.onreadystatechange = function() {   
+                 
+                     if (xhr.readyState == XMLHttpRequest.DONE) {
+                         alert(xhr.responseText);
+                      }
+             }
+             xhr.open("POST","/formPost");
+             xhr.setRequestHeader("Content-type", "application/json");
+             xhr.send(JSON.stringify(userData));
+            }, 5000)  ; 
+                                 
         }}
     </script>
     
